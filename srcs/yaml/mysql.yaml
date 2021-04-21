@@ -6,6 +6,19 @@ type: Opaque
 data:
     mysql-root-password: Nzc3
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,6 +47,13 @@ spec:
             secretKeyRef: 
               name: mysql-secret
               key: mysql-root-password
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
 ---
 apiVersion: v1
 kind: Service	
