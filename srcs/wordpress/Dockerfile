@@ -6,24 +6,18 @@ RUN apk update && apk upgrade
 RUN apk add wget nginx openssl php7 php7-mysqli php7-fpm php7-pdo php7-gd php7-cli php7-mbstring
 
 # Nginx config
-COPY ./nginx.conf /etc/nginx/
-RUN mkdir -p /run/nginx
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+RUN mkdir -p /run/nginx /www
 
 # Wordpress install
 RUN wget https://wordpress.org/latest.tar.gz
-RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz && mkdir /www
-RUN mv wordpress/* /www
-COPY ./wp-config.php /www
+RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz
+RUN mv wordpress /www
+COPY ./wp-config.php /www/wordpress
 
-# SSL
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-        -subj "/C=RU/ST=Moscow/L=Moscow/O=no/OU=no/CN=gdelt/" \
-        -keyout /etc/ssl/private/nginx-selfsigned.key \
-        -out /etc/ssl/certs/nginx-selfsigned.crt
-
-COPY ./start.sh .
+COPY ./start.sh /tmp
 
 # Give access
-RUN chmod +x start.sh
+RUN chmod +x /tmp/start.sh
 
-CMD ./start.sh
+CMD nginx -g 'daemon off;'

@@ -6,7 +6,7 @@ RUN apk update && apk upgrade
 RUN apk add nginx openssl
 
 # Nginx config
-COPY ./nginx.conf /etc/nginx/
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 RUN mkdir -p /run/nginx
 
 
