@@ -5,10 +5,12 @@ FROM alpine:3.12
 RUN apk update && apk upgrade
 RUN apk add mysql mysql-client
 
-# MySQL config
-COPY ./init_mysql.sh .
-COPY ./start.sh .
-RUN chmod +x init_mysql.sh
-# RUN sh init_mysql.sh
+COPY ./start.sh ./my.cnf ./
+# COPY ./start.sh .
+RUN mv my.cnf /etc/
 
-CMD ./start.sh
+# RUN chmod +x init_mysql.sh
+# RUN sh init_mysql.sh
+RUN chmod +x start.sh
+
+CMD sh start.sh
