@@ -16,8 +16,4 @@ RUN mv wordpress /www
 COPY ./wp-config.php /www/wordpress
 
 COPY ./start.sh .
-
-# Give access
-# RUN chmod +x start.sh
-
 CMD sh start.sh
