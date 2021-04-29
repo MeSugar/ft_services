@@ -8,10 +8,10 @@ define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'admin' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '' );
+define( 'DB_PASSWORD', '111' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mysql-service' );
+define( 'DB_HOST', 'mysql-service:3306' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -60,6 +60,9 @@ $table_prefix = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define( 'WP_DEBUG', false );
+
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 /* That's all, stop editing! Happy publishing. */
 
