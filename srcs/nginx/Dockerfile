@@ -16,10 +16,4 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
         -keyout /etc/ssl/private/nginx-selfsigned.key \
         -out /etc/ssl/certs/nginx-selfsigned.crt
 
-# Give access
-# RUN chown -R www-data /var/www/*
-# RUN chmod -R 755 /var/www/*
-
-# COPY start.sh ./
-
 CMD nginx -g 'daemon off;'

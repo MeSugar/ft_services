@@ -5,10 +5,7 @@ FROM alpine:3.12
 RUN apk update && apk upgrade
 RUN apk add --no-cache mysql mysql-client && mkdir -p /run/mysqld
 
-COPY start.sh init_db ./
+COPY start.sh init_db wordpress.sql ./
 COPY ./my.cnf /etc/
-# COPY ./start.sh .
-
-# RUN chmod +x start.sh
 
 CMD sh start.sh
