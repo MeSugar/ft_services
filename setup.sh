@@ -13,9 +13,11 @@ docker build -t nginx-image ./srcs/nginx
 docker build -t mysql-image ./srcs/mysql
 docker build -t wordpress-image ./srcs/wordpress
 docker build -t phpmyadmin-image ./srcs/phpmyadmin
+docker build -t ftps-image ./srcs/ftps
 
 # apply configs
 kubectl apply -f srcs/yaml/nginx.yaml
 kubectl apply -f srcs/yaml/mysql.yaml
 kubectl apply -f srcs/yaml/wordpress.yaml
 kubectl apply -f srcs/yaml/phpmyadmin.yaml
+kubectl apply -f srcs/yaml/ftps.yaml
