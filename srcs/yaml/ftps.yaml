@@ -9,8 +9,17 @@ spec:
     app: ftps
   ports:
   - protocol: TCP
+    name: ftp-21
     port: 21
     targetPort: 21
+  - protocol: TCP
+    name: ftp-min
+    port: 1551
+    targetPort: 1551
+  - protocol: TCP
+    name: ftp-max
+    port: 1552
+    targetPort: 1552
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -35,3 +44,8 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 21
+          name: ftp-21
+        - containerPort: 1551
+          name: ftp-min
+        - containerPort: 1552
+          name: ftp-max

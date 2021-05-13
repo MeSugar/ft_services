@@ -8,7 +8,7 @@ RUN apk update && apk upgrade && apk add vsftpd openssl
 RUN adduser -D user1 && echo "user1" >> /etc/vsftpd/vsftpd.userlist && echo "user1:111" | chpasswd
 
 # ftps config
-COPY ./vsftpd.conf /etc/vsftpd/
+COPY vsftpd.conf /etc/vsftpd/
 COPY start.sh ./
 
 # SSL
