@@ -15,5 +15,11 @@ RUN tar -xf phpMyAdmin-5.0.4-all-languages.tar.gz && rm -rf phpMyAdmin-5.0.4-all
 RUN mv phpMyAdmin-5.0.4-all-languages /www/phpmyadmin
 COPY config.inc.php /www/phpmyadmin
 
-COPY start.sh ./
+# Telegraf
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/latest-stable/community/ --allow-untrusted
+RUN mkdir -p /etc/telegraf/
+COPY telegraf.conf /etc/telegraf/
+
+COPY start.sh .
+
 CMD sh start.sh

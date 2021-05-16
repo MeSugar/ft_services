@@ -15,5 +15,11 @@ RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz
 RUN mv wordpress /www
 COPY ./wp-config.php /www/wordpress
 
-COPY ./start.sh .
+# Telegraf
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/latest-stable/community/ --allow-untrusted
+RUN mkdir -p /etc/telegraf/
+COPY telegraf.conf /etc/telegraf/
+
+COPY start.sh .
+
 CMD sh start.sh
