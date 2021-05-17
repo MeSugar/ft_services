@@ -5,7 +5,7 @@ FROM alpine:3.12
 RUN apk update && apk upgrade && apk add libc6-compat
 RUN wget https://dl.grafana.com/enterprise/release/grafana-enterprise-7.5.6.linux-amd64.tar.gz
 RUN tar -zxvf grafana-enterprise-7.5.6.linux-amd64.tar.gz
-COPY dashboards.yaml /grafana-7.5.6/conf/provisioning/dashboards
+COPY dashboards.yaml *.json /grafana-7.5.6/conf/provisioning/dashboards/
 COPY datasource.yaml /grafana-7.5.6/conf/provisioning/datasource
 
 
