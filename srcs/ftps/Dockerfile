@@ -5,7 +5,7 @@ FROM alpine:3.12
 RUN apk update && apk upgrade && apk add vsftpd openssl
 
 # create user
-RUN adduser -D user1 && echo "user1" >> /etc/vsftpd/vsftpd.userlist && echo "user1:111" | chpasswd
+RUN adduser -S -D user1 && echo "user1" >> /etc/vsftpd/vsftpd.userlist && echo "user1:111" | chpasswd
 
 # ftps config
 COPY vsftpd.conf /etc/vsftpd/
@@ -22,5 +22,6 @@ RUN mkdir -p /etc/telegraf/
 COPY telegraf.conf /etc/telegraf/
 
 COPY start.sh ./
+RUN sed -i 's,\r,,;s, *$,,' start.sh
 
 CMD sh start.sh

@@ -16,7 +16,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana-deployment
+  name: grafana
   labels: 
       app: grafana
 spec:
@@ -35,3 +35,11 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 3000
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - pgrep telegraf && pgrep grafana
+          initialDelaySeconds: 20
+          periodSeconds: 10

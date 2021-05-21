@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # minikube setup, enable LB
 minikube stop
 minikube delete

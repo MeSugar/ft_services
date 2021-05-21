@@ -16,7 +16,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress-deployment
+  name: wordpress
   labels: 
       app: wordpress
 spec:
@@ -35,3 +35,11 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 5050
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - pgrep telegraf && pgrep php && pgrep nginx
+          initialDelaySeconds: 20
+          periodSeconds: 10
