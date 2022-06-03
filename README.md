@@ -28,8 +28,8 @@ The script builds the self-written Docker images for each service, before deploy
 ### Prerequisites
 - Linux
 - Docker is installed and running
-- VirtualBox Hypervisor is installed
-- FileZilla (client for file transfering via FTPS) are installed
+- VirtualBox Hypervisor
+- FileZilla (client for file transfering via FTPS)
 - minikube and its dependencies are installed (especially Kubectl)
 
 ### Deployment
