@@ -31,7 +31,6 @@ The script builds the self-written Docker images for each service, before deploy
 - VirtualBox Hypervisor
 - FileZilla (client for file transfering via FTPS) are installed
 - minikube and its dependencies are installed (especially Kubectl)
-- start minikube
 
 ### Deployment
 ```
